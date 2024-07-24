@@ -78,14 +78,45 @@ for i in range(iter):
             with torch.no_grad():
                 sd[key].copy_(sd_hf[key_hf])
         j+=1
-    sd['transformer.ln_f.weight'].copy_(sd_base['transformer.ln_f.weight'])
-    sd['transformer.ln_f.bias'].copy_(sd_base['transformer.ln_f.bias'])
     if i==iter-1:
+        sd['transformer.ln_f.weight'].copy_(sd_base['transformer.ln_f.weight'])
+        sd['transformer.ln_f.bias'].copy_(sd_base['transformer.ln_f.bias'])
         sd['lm_head.weight'].copy_(sd_base['lm_head.weight'])   
 
     models[i]=model
 
-for i in range(iter):
-    print(f'Model {i}:')
-    print(models[i].state_dict().keys())
-    print('\n')
+# print(models[11].state_dict().keys())
+# import sys;sys.exit(0)
+# for i in range(iter):
+#     print(f'Model {i}:')
+#     print(models[i].state_dict().keys())
+#     print('\n')
+
+
+import tiktoken
+print('form model.generate\n')
+enc=tiktoken.get_encoding('gpt2')
+x=enc.encode("Hello, I'm a language model")
+tokens=torch.tensor(x,dtype=torch.long)
+x=tokens.unsqueeze(0)
+x=x.repeat(5,1)
+
+print('------->',x.shape)
+
+# import sys;sys.exit(0)
+while x.size(1) < 30:
+    with torch.no_grad():
+        l=x
+        for i in range(iter):
+            l=models[i](l,i,iter)[0]  # returns logits,loss [0] for loss only
+        logits=l[:, -1, :]
+        probs=F.softmax(logits,dim=-1)
+        topk_probs,topk_indices=torch.topk(probs,50,dim=-1)
+        next_token=torch.multinomial(topk_probs, num_samples=1)
+        xcol=torch.gather(topk_indices,-1,next_token)
+        x=torch.cat((x, xcol), dim=1)
+
+for i in range(5):
+    tokens=x[i,:]
+    text=enc.decode(tokens.tolist())
+    print('->',text)
