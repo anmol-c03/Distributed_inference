@@ -3,7 +3,7 @@ from torch import nn
 import math
 import torch.nn.functional as F
 from dataclasses import dataclass
-import inspect
+
 
 
 class  CausalSelfAttention(nn.Module):
@@ -17,7 +17,7 @@ class  CausalSelfAttention(nn.Module):
             "bias", 
             torch.tril(torch.ones(config.block_size, config.block_size))
             .view(1, 1, config.block_size, config.block_size), persistent=False)
-        # self.dropout=nn.Dropout(config.dropout)
+
         self.n_head=config.n_head
         self.n_embd=config.n_embd
 
