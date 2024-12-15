@@ -5,7 +5,7 @@
 1. [Project Overview](#project-overview)
 2. [Working](#Working)
 3. [Requirements](#requirements)
-4. [Usage](#usage)
+4. [Installation](#installation)
 5. [Notes](#notes)
 6. [Future_Improvements](#Future_Improvements)
 
