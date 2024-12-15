@@ -1,4 +1,4 @@
-# Next character prediction using wavenet
+
 
 
 # Table of Contents
