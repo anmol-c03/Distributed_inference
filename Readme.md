@@ -21,10 +21,10 @@ It implements Layer-wise Model Initialization.Each layer's weights from a pretra
 
 # Requirements
 
-Python 3.11.2
-PyTorch  2.3.0
-Transformers (!pip install transformers)
-tiktoken (!pip install tiktoken)
+- Python 3.11.2
+- PyTorch  2.3.0
+- Transformers (!pip install transformers)
+- tiktoken (!pip install tiktoken)
 
 
 ## Installation
