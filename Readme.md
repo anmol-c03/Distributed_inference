@@ -49,12 +49,12 @@ pip install -r requirements.txt
 
 # Notes
 
-No Real Networking
-Dummy Setup
-Pretrained Weights
+- No Real Networking
+- Dummy Setup
+- Pretrained Weights
 
 # Future_Improvements
 
-Introduce actual networking for distributed model execution.
-Optimize memory usage for large-scale models.
-Implement a more realistic distributed system using RPC or model-parallel strategies.
+- Introduce actual networking for distributed model execution.
+- Optimize memory usage for large-scale models.
+- Implement a more realistic distributed system using RPC or model-parallel strategies.
