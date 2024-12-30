@@ -19,14 +19,6 @@ This project addresses the challenge of inferencing large-scale AI models, such 
 It implements Layer-wise Model Initialization.Each layer's weights from a pretrained GPT-2 model are loaded into separate model instances (GPT).The first layer includes embeddings, and the last layer includes the language model head for text generation.Input tokens are processed sequentially through each model. The output logits from each layer are passed as input to the next model.The program uses a top-k sampling approach to generate text autoregressively. A predefined sequence (e.g., "Hello, you doing fine") is used as input, and additional tokens are generated.
 
 
-# Requirements
-
-- Python 3.11.2
-- PyTorch  2.3.0
-- Transformers (!pip install transformers)
-- tiktoken (!pip install tiktoken)
-
-
 ## Installation
 
 To use this project, follow these steps:
